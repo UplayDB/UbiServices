@@ -23,7 +23,7 @@ namespace UbiServices.Public
 
                 var client = new RestClient(URL);
                 var request = new RestRequest();
-                Console.WriteLine(LocaleCode.ToString().Replace("_", "-"));
+
                 request.AddHeader("Ubi-AppId", V3.AppID);
                 request.AddHeader("Authorization", $"Ubi_v1 t={AuthTicket}");
                 request.AddHeader("Ubi-LocaleCode", LocaleCode.ToString().Replace("_", "-"));
