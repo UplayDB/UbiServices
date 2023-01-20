@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using RestSharp;
+﻿using DalSoft.RestClient;
 using UbiServices.Records;
 
 namespace UbiServices.Public
@@ -20,16 +19,18 @@ namespace UbiServices.Public
                     return null;
 
                 string URL = $"{URL_V1Applications}{ApplicationId}";
-                var client = new RestClient(URL);
-                var request = new RestRequest();
 
-                request.AddHeader("Ubi-AppId", ApplicationId);
-                RestResponse response = client.GetAsync(request).Result;
-                if (response.Content != null)
-                {
-                    return JsonConvert.DeserializeObject<V1Applications>(response.Content);
-                }
-                return null;
+                Dictionary<string, string> headers = new();
+                headers.Add("Ubi-AppId", ApplicationId);
+
+                var client = new RestClient(URL, headers);
+                var posted = client.Get<V1Applications>();
+                posted.Wait();
+
+                if (posted.Result.ApplicationId == "")
+                    return null;
+
+                return posted.Result;
             }
         }
     }
