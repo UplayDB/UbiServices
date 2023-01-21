@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using RestSharp;
+﻿using RestSharp;
 using UbiServices.Records;
 
 namespace UbiServices.Public

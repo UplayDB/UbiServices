@@ -89,7 +89,7 @@ namespace UbiServices
             }
         }
 
-        public static T? Post<T>(RestClient client, RestRequest request) where T: class
+        public static T? Post<T>(RestClient client, RestRequest request) where T : class
         {
             try
             {

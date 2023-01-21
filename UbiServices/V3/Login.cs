@@ -40,7 +40,7 @@ namespace UbiServices.Public
             request.AddHeader("Ubi-RequestedPlatformType", "uplay");
             request.AddHeader("Ubi-AppId", AppID);
             RemMe rem = new()
-            { 
+            {
                 RememberMe = true
             };
             request.AddJsonBody(rem);
@@ -97,7 +97,7 @@ namespace UbiServices.Public
             {
                 RememberMe = true,
                 TrustedDevice = new()
-                { 
+                {
                     FriendlyName = TrustedName,
                     Id = trustedId
                 }
