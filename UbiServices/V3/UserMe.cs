@@ -1,5 +1,5 @@
-﻿using DalSoft.RestClient;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
+using RestSharp;
 using UbiServices.Records;
 
 namespace UbiServices.Public
@@ -16,20 +16,14 @@ namespace UbiServices.Public
         /// <returns>UsersMe or Null</returns>
         public static UsersMe? GetUsersMe(string token, string sessionId)
         {
-            Dictionary<string, string> headers = new();
-            headers.Add("Authorization", $"Ubi_v1 t={token}");
-            headers.Add("Ubi-AppId", AppID);
-            headers.Add("Content-Type", "application/json");
-            headers.Add("Ubi-SessionId", sessionId);
+            var client = new RestClient(URL_Users + "me");
+            var request = new RestRequest();
 
-            var client = new RestClient($"{URL_Users}me", headers);
-            var posted = client.Get<UsersMe>();
-            posted.Wait();
+            request.AddHeader("Ubi-AppId", AppID);
+            request.AddHeader("Authorization", "Ubi_v1 t=" + token);
+            request.AddHeader("Ubi-SessionId", sessionId);
 
-            if (posted.Result.Status == null)
-                return null;
-
-            return posted.Result;
+            return Rest.Get<UsersMe>(client, request);
         }
 
         /// <summary>
@@ -55,20 +49,14 @@ namespace UbiServices.Public
                 URL += "?fields=" + filedscommas;
             }
 
-            Dictionary<string, string> headers = new();
-            headers.Add("Authorization", $"Ubi_v1 t={token}");
-            headers.Add("Ubi-AppId", AppID);
-            headers.Add("Content-Type", "application/json");
-            headers.Add("Ubi-SessionId", sessionId);
+            var client = new RestClient(URL);
+            var request = new RestRequest();
 
-            var client = new RestClient(URL, headers);
-            var posted = client.Get<JObject>();
-            posted.Wait();
+            request.AddHeader("Ubi-AppId", AppID);
+            request.AddHeader("Authorization", "Ubi_v1 t=" + token);
+            request.AddHeader("Ubi-SessionId", sessionId);
 
-            if (posted.Result.HasValues == false)
-                return null;
-
-            return posted.Result;
+            return Rest.Get(client, request);
         }
     }
 }

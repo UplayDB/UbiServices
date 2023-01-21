@@ -17,10 +17,10 @@ namespace UbiServices.Records
             [property: JsonProperty("clientIp", NullValueHandling = NullValueHandling.Ignore)] string ClientIp,
             [property: JsonProperty("clientIpCountry", NullValueHandling = NullValueHandling.Ignore)] string ClientIpCountry,
             [property: JsonProperty("serverTime", NullValueHandling = NullValueHandling.Ignore)] DateTime? ServerTime,
+            [property: JsonProperty("sessionId", NullValueHandling = NullValueHandling.Ignore)] string SessionId,
             [property: JsonProperty("sessionKey", NullValueHandling = NullValueHandling.Ignore)] string SessionKey,
             [property: JsonProperty("rememberMeTicket", NullValueHandling = NullValueHandling.Ignore)] string RememberMeTicket,
-            [property: JsonProperty("rememberDeviceTicket", NullValueHandling = NullValueHandling.Ignore)] string RememberDeviceTicket,
-            [property: JsonProperty("sessionId")] string SessionId = ""
+            [property: JsonProperty("rememberDeviceTicket", NullValueHandling = NullValueHandling.Ignore)] string RememberDeviceTicket
     );
     #endregion
     #region UsersMe
@@ -333,18 +333,18 @@ namespace UbiServices.Records
 
     public class RemMe
     {
-        [JsonProperty("RememberMe", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("rememberMe", NullValueHandling = NullValueHandling.Ignore)]
         public bool RememberMe;
 
-        [JsonProperty("TrustedDevice", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("trustedDevice", NullValueHandling = NullValueHandling.Ignore)]
         public trustedDevice TrustedDevice;
 
         public class trustedDevice
         {
-            [JsonProperty("FriendlyName", NullValueHandling = NullValueHandling.Ignore)]
+            [JsonProperty("friendlyName", NullValueHandling = NullValueHandling.Ignore)]
             public string FriendlyName;
 
-            [JsonProperty("Id", NullValueHandling = NullValueHandling.Ignore)]
+            [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
             public string Id;
         }
     }

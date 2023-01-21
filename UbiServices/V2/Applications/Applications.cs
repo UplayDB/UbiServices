@@ -1,4 +1,4 @@
-﻿using DalSoft.RestClient;
+﻿using RestSharp;
 using UbiServices.Records;
 
 namespace UbiServices.Public
@@ -20,17 +20,12 @@ namespace UbiServices.Public
                     return null;
 
                 string URL = $"{URL_V2Applications}{ApplicationId}";
-                Dictionary<string, string> headers = new();
-                headers.Add("Ubi-AppId", ApplicationId);
+                var client = new RestClient(URL);
+                var request = new RestRequest();
 
-                var client = new RestClient(URL, headers);
-                var posted = client.Get<V2Applications>();
-                posted.Wait();
+                request.AddHeader("Ubi-AppId", ApplicationId);
 
-                if (posted.Result.ApplicationId == "")
-                    return null;
-
-                return posted.Result;
+                return Rest.Get<V2Applications>(client, request);
             }
         }
     }

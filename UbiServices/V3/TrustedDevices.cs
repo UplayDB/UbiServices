@@ -1,9 +1,9 @@
-﻿using DalSoft.RestClient;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using RestSharp;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
-using UbiServices.Records;
 
 namespace UbiServices.Public
 {
@@ -19,19 +19,14 @@ namespace UbiServices.Public
         /// <returns>JObject or Null</returns>
         public static JObject? GetTrustedDevices(string token, string sessionId)
         {
-            Dictionary<string, string> headers = new();
-            headers.Add("Authorization", $"Ubi_v1 t={token}");
-            headers.Add("Ubi-AppId", AppID);
-            headers.Add("Ubi-SessionId", sessionId);
+            var client = new RestClient(URL_Devices);
+            var request = new RestRequest();
 
-            var client = new RestClient(URL_Devices, headers);
-            var posted = client.Get<JObject>();
-            posted.Wait();
+            request.AddHeader("Ubi-AppId", AppID);
+            request.AddHeader("Authorization", "Ubi_v1 t=" + token);
+            request.AddHeader("Ubi-SessionId", sessionId);
 
-            if (posted.Result.HasValues == false)
-                return null;
-
-            return posted.Result;
+            return Rest.Get(client, request);
         }
 
         /// <summary>
@@ -44,24 +39,19 @@ namespace UbiServices.Public
         /// <returns>JObject or Null</returns>
         public static JObject? UpdateTrustedDevices(string token, string sessionId, string deviceId, string DeviceName)
         {
-            Dictionary<string, string> headers = new();
-            headers.Add("Authorization", $"Ubi_v1 t={token}");
-            headers.Add("Ubi-AppId", AppID);
-            headers.Add("Ubi-SessionId", sessionId);
+            var client = new RestClient(URL_Devices + $"/{deviceId}");
+            var request = new RestRequest();
 
-            var client = new RestClient($"{URL_Devices}/{deviceId}", headers);
-            var trustedDevice = new RemMe.trustedDevice
+            request.AddHeader("Ubi-AppId", AppID);
+            request.AddHeader("Authorization", "Ubi_v1 t=" + token);
+            request.AddHeader("Ubi-SessionId", sessionId);
+            var rem = new
             {
-                FriendlyName = DeviceName
+                friendlyName = DeviceName
             };
+            request.AddJsonBody(rem);
 
-            var posted = client.Put<RemMe.trustedDevice, JObject>(trustedDevice);
-            posted.Wait();
-
-            if (posted.Result.HasValues == false)
-                return null;
-
-            return posted.Result;
+            return Rest.Put(client, request);
         }
 
         /// <summary>
@@ -73,18 +63,14 @@ namespace UbiServices.Public
         /// <returns>StatusCode or Null</returns>
         public static HttpStatusCode? DeleteTrustedDevices(string token, string sessionId, string deviceId)
         {
-            Dictionary<string, string> headers = new();
-            headers.Add("Authorization", $"Ubi_v1 t={token}");
-            headers.Add("Ubi-AppId", AppID);
-            headers.Add("Ubi-SessionId", sessionId);
+            var client = new RestClient(URL_Devices + $"/{deviceId}");
+            var request = new RestRequest();
 
-            var client = new RestClient($"{URL_Devices}/{deviceId}", headers);
-            var posted = client.Delete<HttpResponseMessage>(); //should work
-            posted.Wait();
-            if (posted.Result.IsSuccessStatusCode == false)
-                return null;
+            request.AddHeader("Ubi-AppId", AppID);
+            request.AddHeader("Authorization", "Ubi_v1 t=" + token);
+            request.AddHeader("Ubi-SessionId", sessionId);
 
-            return posted.Result.StatusCode;
+            return Rest.Delete(client, request);
         }
 
         /// <summary>

@@ -1,5 +1,6 @@
-﻿using DalSoft.RestClient;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using RestSharp;
 using UbiServices.Public;
 using UbiServices.Records;
 
@@ -16,18 +17,13 @@ namespace UbiServices
         {
             string URL = $"https://beta.ubi.com/api/v1/betas";
 
-            Dictionary<string, string> headers = new();
-            headers.Add("Ubi-Ticket", AuthTicket);
-            headers.Add("Ubi-AppId", V3.AppID);
+            var client = new RestClient(URL);
+            var request = new RestRequest();
 
-            var client = new RestClient(URL, headers);
-            var posted = client.Get<List<BetasRoot>>();
-            posted.Wait();
+            request.AddHeader("Ubi-AppId", V3.AppID);
+            request.AddHeader("Ubi-Ticket", AuthTicket);
 
-            if (posted.Result.Count == 0)
-                return null;
-
-            return posted.Result;
+            return Rest.Get<List<BetasRoot>>(client, request);
         }
 
         /// <summary>
@@ -40,18 +36,13 @@ namespace UbiServices
         {
             string URL = $"https://beta.ubi.com/api/v1/profiles/{ProfileId}";
 
-            Dictionary<string, string> headers = new();
-            headers.Add("Ubi-Ticket", AuthTicket);
-            headers.Add("Ubi-AppId", V3.AppID);
+            var client = new RestClient(URL);
+            var request = new RestRequest();
 
-            var client = new RestClient(URL, headers);
-            var posted = client.Get<BetasProfileRoot>();
-            posted.Wait();
+            request.AddHeader("Ubi-AppId", V3.AppID);
+            request.AddHeader("Ubi-Ticket", AuthTicket);
 
-            if (posted.Result.CountryCode == "")
-                return null;
-
-            return posted.Result;
+            return Rest.Get<BetasProfileRoot>(client, request);
         }
 
         /// <summary>
@@ -64,18 +55,13 @@ namespace UbiServices
         {
             string URL = $"https://beta.ubi.com/api/v1/{BetaCode}";
 
-            Dictionary<string, string> headers = new();
-            headers.Add("Ubi-Ticket", AuthTicket);
-            headers.Add("Ubi-AppId", V3.AppID);
+            var client = new RestClient(URL);
+            var request = new RestRequest();
 
-            var client = new RestClient(URL, headers);
-            var posted = client.Get<JObject>();
-            posted.Wait();
+            request.AddHeader("Ubi-AppId", V3.AppID);
+            request.AddHeader("Ubi-Ticket", AuthTicket);
 
-            if (posted.Result.HasValues == false)
-                return null;
-
-            return posted.Result;
+            return Rest.Get(client, request);
         }
 
         /// <summary>
@@ -88,18 +74,13 @@ namespace UbiServices
         {
             string URL = $"https://beta.ubi.com/api/v1/{BetaCode}/phases";
 
-            Dictionary<string, string> headers = new();
-            headers.Add("Ubi-Ticket", AuthTicket);
-            headers.Add("Ubi-AppId", V3.AppID);
+            var client = new RestClient(URL);
+            var request = new RestRequest();
 
-            var client = new RestClient(URL, headers);
-            var posted = client.Get<JObject>();
-            posted.Wait();
+            request.AddHeader("Ubi-AppId", V3.AppID);
+            request.AddHeader("Ubi-Ticket", AuthTicket);
 
-            if (posted.Result.HasValues == false)
-                return null;
-
-            return posted.Result;
+            return Rest.Get(client, request);
         }
 
         /// <summary>
@@ -113,18 +94,13 @@ namespace UbiServices
         {
             string URL = $"https://beta.ubi.com/api/v1/{BetaCode}/phases/{PhaseId}";
 
-            Dictionary<string, string> headers = new();
-            headers.Add("Ubi-Ticket", AuthTicket);
-            headers.Add("Ubi-AppId", V3.AppID);
+            var client = new RestClient(URL);
+            var request = new RestRequest();
 
-            var client = new RestClient(URL, headers);
-            var posted = client.Get<JObject>();
-            posted.Wait();
+            request.AddHeader("Ubi-AppId", V3.AppID);
+            request.AddHeader("Ubi-Ticket", AuthTicket);
 
-            if (posted.Result.HasValues == false)
-                return null;
-
-            return posted.Result;
+            return Rest.Get(client, request);
         }
 
         /// <summary>
@@ -138,18 +114,13 @@ namespace UbiServices
         {
             string URL = $"https://beta.ubi.com/api/v1/{BetaCode}/phases/{PhaseId}/playergroups";
 
-            Dictionary<string, string> headers = new();
-            headers.Add("Ubi-Ticket", AuthTicket);
-            headers.Add("Ubi-AppId", V3.AppID);
+            var client = new RestClient(URL);
+            var request = new RestRequest();
 
-            var client = new RestClient(URL, headers);
-            var posted = client.Get<JObject>();
-            posted.Wait();
+            request.AddHeader("Ubi-AppId", V3.AppID);
+            request.AddHeader("Ubi-Ticket", AuthTicket);
 
-            if (posted.Result.HasValues == false)
-                return null;
-
-            return posted.Result;
+            return Rest.Get(client, request);
         }
 
         /// <summary>
@@ -164,18 +135,13 @@ namespace UbiServices
         {
             string URL = $"https://beta.ubi.com/api/v1/{BetaCode}/phases/{PhaseId}/playergroups/{PlayerGroupId}";
 
-            Dictionary<string, string> headers = new();
-            headers.Add("Ubi-Ticket", AuthTicket);
-            headers.Add("Ubi-AppId", V3.AppID);
+            var client = new RestClient(URL);
+            var request = new RestRequest();
 
-            var client = new RestClient(URL, headers);
-            var posted = client.Get<JObject>();
-            posted.Wait();
+            request.AddHeader("Ubi-AppId", V3.AppID);
+            request.AddHeader("Ubi-Ticket", AuthTicket);
 
-            if (posted.Result.HasValues == false)
-                return null;
-
-            return posted.Result;
+            return Rest.Get(client, request);
         }
 
         /// <summary>
@@ -193,31 +159,21 @@ namespace UbiServices
         {
             string URL = $"https://beta.ubi.com/api/v1/{BetaCode}/phases/{PhaseId}/players/{ProfileId}?platformId={PlatfromId}";
 
-            Dictionary<string, string> headers = new();
-            headers.Add("Ubi-Ticket", AuthTicket);
-            headers.Add("Ubi-AppId", V3.AppID);
+            var client = new RestClient(URL);
+            var request = new RestRequest();
 
-            var client = new RestClient(URL, headers);
+            request.AddHeader("Ubi-AppId", V3.AppID);
+            request.AddHeader("Ubi-Ticket", AuthTicket);
+
+            request.AddBody(bodyJson);
 
             if (Method == "PUT")
             {
-                var posted = client.Put<string, JObject>(bodyJson);
-                posted.Wait();
-
-                if (posted.Result.HasValues == false)
-                    return null;
-
-                return posted.Result;
+                return Rest.Put(client, request);
             }
             else if (Method == "POST")
             {
-                var posted = client.Post<string, JObject>(bodyJson);
-                posted.Wait();
-
-                if (posted.Result.HasValues == false)
-                    return null;
-
-                return posted.Result;
+                return Rest.Post(client, request);
             }
             return null;
         }
@@ -238,31 +194,21 @@ namespace UbiServices
         {
             string URL = $"https://beta.ubi.com/api/v1/{BetaCode}/phases/{PhaseId}/players/{ProfileId}/playergroups/{PlayerGroupId}?platformId={PlatfromId}";
 
-            Dictionary<string, string> headers = new();
-            headers.Add("Ubi-Ticket", AuthTicket);
-            headers.Add("Ubi-AppId", V3.AppID);
+            var client = new RestClient(URL);
+            var request = new RestRequest();
 
-            var client = new RestClient(URL, headers);
+            request.AddHeader("Ubi-AppId", V3.AppID);
+            request.AddHeader("Ubi-Ticket", AuthTicket);
+
+            request.AddBody(bodyJson);
 
             if (Method == "PUT")
             {
-                var posted = client.Put<string, JObject>(bodyJson);
-                posted.Wait();
-
-                if (posted.Result.HasValues == false)
-                    return null;
-
-                return posted.Result;
+                return Rest.Put(client, request);
             }
             else if (Method == "POST")
             {
-                var posted = client.Post<string, JObject>(bodyJson);
-                posted.Wait();
-
-                if (posted.Result.HasValues == false)
-                    return null;
-
-                return posted.Result;
+                return Rest.Post(client, request);
             }
             return null;
         }
@@ -281,18 +227,15 @@ namespace UbiServices
         {
             string URL = $"https://beta.ubi.com/api/v1/{BetaCode}/phases/{PhaseId}/players/{ProfileId}/friends?platformId={PlatfromId}";
 
-            Dictionary<string, string> headers = new();
-            headers.Add("Ubi-Ticket", AuthTicket);
-            headers.Add("Ubi-AppId", V3.AppID);
+            var client = new RestClient(URL);
+            var request = new RestRequest();
 
-            var client = new RestClient(URL, headers);
-            var posted = client.Post<string, JObject>("{\"Friends\":[{\"FriendId\":\"" + FriendsId + "\"}]}");
-            posted.Wait();
+            request.AddHeader("Ubi-AppId", V3.AppID);
+            request.AddHeader("Ubi-Ticket", AuthTicket);
 
-            if (posted.Result.HasValues == false)
-                return null;
+            request.AddBody("{\"Friends\":[{\"FriendId\":\"" + FriendsId + "\"}]}");
 
-            return posted.Result;
+            return Rest.Post(client, request);
         }
 
         /// <summary>
@@ -310,18 +253,15 @@ namespace UbiServices
         {
             string URL = $"https://beta.ubi.com/api/v1/{BetaCode}/phases/{PhaseId}/players/{ProfileId}/playergroups/{PlayerGroupId}/friends?platformId={PlatfromId}";
 
-            Dictionary<string, string> headers = new();
-            headers.Add("Ubi-Ticket", AuthTicket);
-            headers.Add("Ubi-AppId", V3.AppID);
+            var client = new RestClient(URL);
+            var request = new RestRequest();
 
-            var client = new RestClient(URL, headers);
-            var posted = client.Post<string, JObject>("{\"Friends\":[{\"FriendId\":\"" + FriendsId + "\"}]}");
-            posted.Wait();
+            request.AddHeader("Ubi-AppId", V3.AppID);
+            request.AddHeader("Ubi-Ticket", AuthTicket);
 
-            if (posted.Result.HasValues == false)
-                return null;
+            request.AddBody("{\"Friends\":[{\"FriendId\":\"" + FriendsId + "\"}]}");
 
-            return posted.Result;
+            return Rest.Post(client, request);
         }
 
         /// <summary>
@@ -347,35 +287,22 @@ namespace UbiServices
 
             URL += $"?platformId={oldPlatform}&newPlatformId={newPlatform}";
 
-            Dictionary<string, string> headers = new();
-            headers.Add("Ubi-Ticket", AuthTicket);
-            headers.Add("Ubi-AppId", V3.AppID);
+            var client = new RestClient(URL);
+            var request = new RestRequest();
 
-            var client = new RestClient(URL, headers);
+            request.AddHeader("Ubi-AppId", V3.AppID);
+            request.AddHeader("Ubi-Ticket", AuthTicket);
 
-            string body = "{}";
+            request.AddBody("{}");
 
             if (Method == "PUT")
             {
-                var posted = client.Put<string, JObject>(body);
-                posted.Wait();
-
-                if (posted.Result.HasValues == false)
-                    return null;
-
-                return posted.Result;
+                return Rest.Put(client, request);
             }
             else if (Method == "POST")
             {
-                var posted = client.Post<string, JObject>(body);
-                posted.Wait();
-
-                if (posted.Result.HasValues == false)
-                    return null;
-
-                return posted.Result;
+                return Rest.Post(client, request);
             }
-
             return null;
         }
     }

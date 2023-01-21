@@ -1,4 +1,5 @@
-﻿using DalSoft.RestClient;
+﻿using Newtonsoft.Json;
+using RestSharp;
 using UbiServices.Records;
 
 namespace UbiServices.Public
@@ -18,17 +19,12 @@ namespace UbiServices.Public
                     return null;
 
                 string URL = $"{URL_V1Spaces}{SpaceId}";
-                Dictionary<string, string> headers = new();
-                headers.Add("Ubi-AppId", V3.AppID);
+                var client = new RestClient(URL);
+                var request = new RestRequest();
 
-                var client = new RestClient(URL, headers);
-                var posted = client.Get<V1Spaces>();
-                posted.Wait();
+                request.AddHeader("Ubi-AppId", V3.AppID);
 
-                if (posted.Result.DateCreated == DateTime.MinValue)
-                    return null;
-
-                return posted.Result;
+                return Rest.Get<V1Spaces>(client, request);
             }
         }
     }

@@ -1,5 +1,6 @@
-﻿using DalSoft.RestClient;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using RestSharp;
 using UbiServices.Records;
 
 namespace UbiServices.Store
@@ -15,15 +16,13 @@ namespace UbiServices.Store
         public static JObject? PostStoreAlgoliaSearch(List<Request> requests)
         {
             string URL = $"https://xely3u4lod-dsn.algolia.net/1/indexes/*/queries?x-algolia-agent=Algolia%20for%20JavaScript%20(3.35.1)%3B%20Browser&x-algolia-application-id=XELY3U4LOD&x-algolia-api-key=5638539fd9edb8f2c6b024b49ec375bd";
-            var req = new RequestRoot(requests);
             var client = new RestClient(URL);
-            var posted = client.Post<RequestRoot, JObject>(req);
-            posted.Wait();
+            var request = new RestRequest();
 
-            if (posted.Result.HasValues == false)
-                return null;
+            var req = new RequestRoot(requests);
+            request.AddBody(JsonConvert.SerializeObject(req));
 
-            return posted.Result;
+            return Rest.Post(client, request);
         }
 
         /// <summary>
@@ -35,15 +34,21 @@ namespace UbiServices.Store
         public static JObject? PostStoreAlgoliaQuery(Enums.CountryCode storeType, List<string> productIds)
         {
             string URL = $"https://xely3u4lod-dsn.algolia.net/1/indexes/{storeType.ToString()}_custom_MFE/query?x-algolia-agent=Algolia%20for%20JavaScript%20(4.8.5)%3B%20Browser&x-algolia-application-id=XELY3U4LOD&x-algolia-api-key=5638539fd9edb8f2c6b024b49ec375bd";
-
             var client = new RestClient(URL);
-            var posted = client.Post<string, JObject>("{\"query\":\"" + string.Join(",", productIds) + "\"}");
-            posted.Wait();
+            var request = new RestRequest();
+            string jointed = "";
+            if (productIds.Count == 1)
+            {
+                jointed = string.Join(",", productIds).Replace(",", "");
+            }
+            else
+            {
+                jointed = string.Join(",", productIds);
+            }
 
-            if (posted.Result.HasValues == false)
-                return null;
+            request.AddBody("{\"query\":\"" + jointed + "\"}");
 
-            return posted.Result;
+            return Rest.Post(client, request);
         }
     }
 }

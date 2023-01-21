@@ -1,4 +1,5 @@
-﻿using DalSoft.RestClient;
+﻿using Newtonsoft.Json;
+using RestSharp;
 using UbiServices.Records;
 
 namespace UbiServices.Public
@@ -26,19 +27,14 @@ namespace UbiServices.Public
             URL += "&offset=" + offset.ToString().ToLower();
             URL += "&limit=" + limit.ToString().ToLower();
 
-            Dictionary<string, string> headers = new();
-            headers.Add("Authorization", $"Ubi_v1 t={token}");
-            headers.Add("Ubi-AppId", V3.AppID);
-            headers.Add("Ubi-SessionId", sessionId);
+            var client = new RestClient(URL);
+            var request = new RestRequest();
 
-            var client = new RestClient(URL, headers);
-            var posted = client.Get<CatalogRoot>();
-            posted.Wait();
+            request.AddHeader("Ubi-AppId", V3.AppID);
+            request.AddHeader("Authorization", "Ubi_v1 t=" + token);
+            request.AddHeader("Ubi-SessionId", sessionId);
 
-            if (posted.Result.Games.Count == 0)
-                return null;
-
-            return posted.Result;
+            return Rest.Get<CatalogRoot>(client, request);
         }
     }
 }

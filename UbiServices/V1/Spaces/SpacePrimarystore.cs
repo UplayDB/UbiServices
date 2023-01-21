@@ -1,5 +1,5 @@
-﻿using DalSoft.RestClient;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
+using RestSharp;
 
 namespace UbiServices.Public
 {
@@ -21,19 +21,14 @@ namespace UbiServices.Public
 
                 string URL = $"{URL_V1Spaces}{SpaceId}/configs/primarystore";
 
-                Dictionary<string, string> headers = new();
-                headers.Add("Authorization", $"Ubi_v1 t={AuthTicket}");
-                headers.Add("Ubi-LocaleCode", LocaleCode.ToString().Replace("_", "-"));
-                headers.Add("Ubi-AppId", V3.AppID);
+                var client = new RestClient(URL);
+                var request = new RestRequest();
 
-                var client = new RestClient(URL, headers);
-                var posted = client.Get<JObject>();
-                posted.Wait();
+                request.AddHeader("Ubi-AppId", V3.AppID);
+                request.AddHeader("Authorization", $"Ubi_v1 t={AuthTicket}");
+                request.AddHeader("Ubi-localeCode", LocaleCode.ToString().Replace("_", "-"));
 
-                if (posted.Result.HasValues == false)
-                    return null;
-
-                return posted.Result;
+                return Rest.Get(client, request);
             }
         }
     }
