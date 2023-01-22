@@ -39,7 +39,7 @@ namespace UbiServices.Store
             string jointed = "";
             if (productIds.Count == 1)
             {
-                jointed = string.Join(",", productIds).Replace(",", "");
+                jointed = productIds[0];
             }
             else
             {

@@ -21,7 +21,7 @@
 	<AssemblyOriginatorKeyFile>../../Sign.snk</AssemblyOriginatorKeyFile>
 	<PackageReleaseNotes>Check changelog.txt</PackageReleaseNotes>
 	<DebugType>none</DebugType>
-	<Version>23.1.21.0</Version>
+	<Version>23.1.22.0-pre</Version>
   </PropertyGroup>
 
 

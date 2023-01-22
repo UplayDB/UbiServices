@@ -1,5 +1,13 @@
 --------------------------------------------------------------
- 23.1.21.0		2023 Jan 21 -
+ 23.1.2X.0		2023 Jan X
+--------------------------------------------------------------
+* Added option to download from the Launcher asset as Bytes (good for images)
+* Added V1Space Global paths
+* UserMe now Users
+* Added Profiles
+
+--------------------------------------------------------------
+ 23.1.21.0		2023 Jan 21 - X
 --------------------------------------------------------------
 * Reverted back to RestSharp 
 * Handles any failure

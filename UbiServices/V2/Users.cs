@@ -21,7 +21,7 @@ namespace UbiServices.Public
             request.AddHeader("Authorization", $"Ubi_v1 t={token}");
             request.AddHeader("Ubi-SessionId", sessionId);
 
-            return Rest.Post<v2UserMe>(client, request);
+            return Rest.Get<v2UserMe>(client, request);
         }
     }
 }
