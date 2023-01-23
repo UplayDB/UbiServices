@@ -157,5 +157,29 @@ namespace UbiServices.Public
             }));
             return Rest.Post(client, request);
         }
+
+        public static JObject? GetProfiles(string token, string sessionId, string UserId)
+        {
+            var client = new RestClient($"{URL_Users}{UserId}/profiles");
+            var request = new RestRequest();
+
+            request.AddHeader("Ubi-AppId", AppID);
+            request.AddHeader("Authorization", "Ubi_v1 t=" + token);
+            request.AddHeader("Ubi-SessionId", sessionId);
+
+            return Rest.Get(client, request);
+        }
+
+        public static JObject? GetInitialProfiles(string token, string sessionId, string UserId)
+        {
+            var client = new RestClient($"{URL_Users}{UserId}/initialProfiles");
+            var request = new RestRequest();
+
+            request.AddHeader("Ubi-AppId", AppID);
+            request.AddHeader("Authorization", "Ubi_v1 t=" + token);
+            request.AddHeader("Ubi-SessionId", sessionId);
+
+            return Rest.Get(client, request);
+        }
     }
 }

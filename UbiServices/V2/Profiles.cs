@@ -18,5 +18,17 @@ namespace UbiServices.Public
 
             return Rest.Get(client, request);
         }
+
+        public static JObject? GetFromIP(string token, string sessionId,string IP)
+        {
+            var client = new RestClient(Urls.GetUrl("v2/iplocation/") + IP);
+            var request = new RestRequest();
+
+            request.AddHeader("Ubi-AppId", V3.AppID);
+            request.AddHeader("Authorization", $"Ubi_v1 t={token}");
+            request.AddHeader("Ubi-SessionId", sessionId);
+
+            return Rest.Get(client, request);
+        }
     }
 }

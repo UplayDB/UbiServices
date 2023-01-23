@@ -1,4 +1,5 @@
-﻿using RestSharp;
+﻿using Newtonsoft.Json.Linq;
+using RestSharp;
 using UbiServices.Records;
 
 namespace UbiServices.Public
@@ -22,6 +23,19 @@ namespace UbiServices.Public
             request.AddHeader("Ubi-SessionId", sessionId);
 
             return Rest.Get<v2UserMe>(client, request);
+        }
+
+
+        public static JObject? GetCommunicationPreferences(string token, string sessionId)
+        {
+            var client = new RestClient($"{URL_UsersMe}/communicationPreferences");
+            var request = new RestRequest();
+
+            request.AddHeader("Ubi-AppId", V3.AppID);
+            request.AddHeader("Authorization", $"Ubi_v1 t={token}");
+            request.AddHeader("Ubi-SessionId", sessionId);
+
+            return Rest.Get(client, request);
         }
     }
 }

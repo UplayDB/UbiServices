@@ -37,6 +37,18 @@ namespace UbiServices.Public
             return Rest.Post(client, request);
         }
 
+        public static JObject? GetAvatars(string token, string sessionId, string ProfileId)
+        {
+            var client = new RestClient($"{URL_Profiles}/{ProfileId}/avatars");
+            var request = new RestRequest();
+
+            request.AddHeader("Ubi-AppId", V3.AppID);
+            request.AddHeader("Authorization", "Ubi_v1 t=" + token);
+            request.AddHeader("Ubi-SessionId", sessionId);
+
+            return Rest.Get(client, request);
+        }
+
         public static JObject? GetEntitlements(string token, string sessionId)
         {
             var client = new RestClient($"{URL_Profiles}/me/global/ubiconnect/entitlement/api/entitlements");
@@ -64,6 +76,30 @@ namespace UbiServices.Public
         public static JObject? GetUnits(string token, string sessionId)
         {
             var client = new RestClient($"{URL_Profiles}/me/global/ubiconnect/economy/api/units");
+            var request = new RestRequest();
+
+            request.AddHeader("Ubi-AppId", V3.AppID);
+            request.AddHeader("Authorization", $"Ubi_v1 t={token}");
+            request.AddHeader("Ubi-SessionId", sessionId);
+
+            return Rest.Get(client, request);
+        }
+
+        public static JObject? GetTransactions(string token, string sessionId)
+        {
+            var client = new RestClient($"{URL_Profiles}/me/global/ubiconnect/economy/api/units/transactions");
+            var request = new RestRequest();
+
+            request.AddHeader("Ubi-AppId", V3.AppID);
+            request.AddHeader("Authorization", $"Ubi_v1 t={token}");
+            request.AddHeader("Ubi-SessionId", sessionId);
+
+            return Rest.Get(client, request);
+        }
+
+        public static JObject? GetConsents(string token, string sessionId,string UserId)
+        {
+            var client = new RestClient($"{URL_Profiles}/{UserId}/applications/oauth/clients/consents?offset=0&limit=50");
             var request = new RestRequest();
 
             request.AddHeader("Ubi-AppId", V3.AppID);
