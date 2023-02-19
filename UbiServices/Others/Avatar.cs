@@ -1,18 +1,19 @@
 ﻿using RestSharp;
 
-namespace UbiServices.LauncherAsset
+namespace UbiServices.Others
 {
-    public class Asset
+    public class Avatar
     {
         /// <summary>
-        /// 
+        /// Get Avatar
         /// </summary>
-        /// <param name="asset"></param>
-        /// <returns></returns>
-        public static byte[]? GetAsset(string asset)
+        /// <param name="UserId">User Id</param>
+        /// <param name="size">256</param>
+        /// <returns>Byte Array or null</returns>
+        public static byte[]? GetAvatar(string UserId, string size)
         {
 
-            var client = new RestClient($"https://ubistatic3-a.akamaihd.net/orbit/uplay_launcher_3_0/assets/{asset}");
+            var client = new RestClient($"https://ubisoft-avatars.akamaized.net/{UserId}/default_{size}_{size}.png");
             var request = new RestRequest();
 
             try

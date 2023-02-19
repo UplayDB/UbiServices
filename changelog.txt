@@ -1,5 +1,11 @@
+ 23.2.19		2023 Feb 19 - 
 --------------------------------------------------------------
- 23.1.23.0-pre	2023 Jan 23
+* InternalEx will show more details than before
+* Changes LauncherAsset to Others
+* Added option to get Avatar
+
+--------------------------------------------------------------
+ 23.1.23.0-pre	2023 Jan 23 - Feb 19
 --------------------------------------------------------------
 * Added option to download from the Launcher asset as Bytes (good for images)
 * Added V1Space Global paths
@@ -7,7 +13,7 @@
 * Added Profiles
 
 --------------------------------------------------------------
- 23.1.21.0		2023 Jan 21 - X
+ 23.1.21.0		2023 Jan 21 - 23
 --------------------------------------------------------------
 * Reverted back to RestSharp 
 * Handles any failure
