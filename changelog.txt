@@ -1,4 +1,9 @@
- 23.2.19		2023 Feb 19 - 
+  23.3.19		2023 Mar 19 - 
+--------------------------------------------------------------
+* Added .NET 7 build
+ 
+ 
+ 23.2.19		2023 Feb 19 - Mar 19
 --------------------------------------------------------------
 * InternalEx will show more details than before
 * Changes LauncherAsset to Others

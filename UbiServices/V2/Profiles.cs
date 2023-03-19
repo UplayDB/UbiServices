@@ -19,7 +19,7 @@ namespace UbiServices.Public
             return Rest.Get(client, request);
         }
 
-        public static JObject? GetFromIP(string token, string sessionId,string IP)
+        public static JObject? GetFromIP(string token, string sessionId, string IP)
         {
             var client = new RestClient(Urls.GetUrl("v2/iplocation/") + IP);
             var request = new RestRequest();

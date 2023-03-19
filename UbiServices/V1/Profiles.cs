@@ -97,7 +97,7 @@ namespace UbiServices.Public
             return Rest.Get(client, request);
         }
 
-        public static JObject? GetConsents(string token, string sessionId,string UserId)
+        public static JObject? GetConsents(string token, string sessionId, string UserId)
         {
             var client = new RestClient($"{URL_Profiles}/{UserId}/applications/oauth/clients/consents?offset=0&limit=50");
             var request = new RestRequest();

@@ -167,7 +167,7 @@ namespace UbiServices.Public
             return Rest.Get(client, request);
         }
 
-        public static JObject? GetFriends(string token, string sessionId,string ProfileId)
+        public static JObject? GetFriends(string token, string sessionId, string ProfileId)
         {
             var client = new RestClient($"{URL_Profiles}/{ProfileId}/friends?locale=en-GB");
             var request = new RestRequest();
