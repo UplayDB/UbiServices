@@ -8,7 +8,7 @@ namespace UbiServices.Public
 {
     public partial class V3
     {
-        public static readonly string URL_Devices = Urls.GetUrl("v3/users/me/trusteddevices");
+        public static readonly string URL_Devices = Urls.GetUrl("v3/profiles/me/trusteddevices");
 
         /// <summary>
         /// Get Trusted Devices
