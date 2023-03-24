@@ -2,6 +2,8 @@
 --------------------------------------------------------------
 * Crashing on InternalEx fixed
 * Fixed TrustedDevies
+* Added Debug
+* Added More Login option
   
   23.3.19		2023 Mar 19 - 24
 --------------------------------------------------------------

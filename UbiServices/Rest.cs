@@ -12,7 +12,9 @@ namespace UbiServices
         {
             try
             {
+                Debug.WriteDebug(JsonConvert.SerializeObject(request));
                 RestResponse response = client.PutAsync(request).Result;
+                Debug.WriteDebug(JsonConvert.SerializeObject(response));
                 if (response.Content != null)
                 {
                     Console.WriteLine(response.StatusCode);
@@ -32,7 +34,9 @@ namespace UbiServices
         {
             try
             {
+                Debug.WriteDebug(JsonConvert.SerializeObject(request));
                 RestResponse response = client.PostAsync(request).Result;
+                Debug.WriteDebug(JsonConvert.SerializeObject(response));
                 if (response.Content != null)
                 {
                     Console.WriteLine(response.StatusCode);
@@ -52,7 +56,9 @@ namespace UbiServices
         {
             try
             {
+                Debug.WriteDebug(JsonConvert.SerializeObject(request));
                 RestResponse response = client.GetAsync(request).Result;
+                Debug.WriteDebug(JsonConvert.SerializeObject(response));
                 if (response.Content != null)
                 {
                     Console.WriteLine(response.StatusCode);
@@ -73,7 +79,9 @@ namespace UbiServices
         {
             try
             {
+                Debug.WriteDebug(JsonConvert.SerializeObject(request));
                 RestResponse response = client.PutAsync(request).Result;
+                Debug.WriteDebug(JsonConvert.SerializeObject(response));
                 if (response.Content != null)
                 {
                     Console.WriteLine(response.StatusCode);
@@ -93,7 +101,9 @@ namespace UbiServices
         {
             try
             {
+                Debug.WriteDebug(JsonConvert.SerializeObject(request));
                 RestResponse response = client.PostAsync(request).Result;
+                Debug.WriteDebug(JsonConvert.SerializeObject(response));
                 if (response.Content != null)
                 {
                     Console.WriteLine(response.StatusCode);
@@ -113,7 +123,9 @@ namespace UbiServices
         {
             try
             {
+                Debug.WriteDebug(JsonConvert.SerializeObject(request));
                 RestResponse response = client.GetAsync(request).Result;
+                Debug.WriteDebug(JsonConvert.SerializeObject(response));
                 if (response.Content != null)
                 {
                     Console.WriteLine(response.StatusCode);

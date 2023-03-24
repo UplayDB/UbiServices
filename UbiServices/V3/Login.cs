@@ -88,7 +88,7 @@ namespace UbiServices.Public
             var request = new RestRequest();
 
             request.AddHeader("Authorization", $"ubi_2fa_v1 t={tfaTicket}");
-            request.AddHeader("Ubi-2FACode", tfaCode);
+            request.AddHeader("ubi-2facode", tfaCode);
             request.AddHeader("User-Agent", UserAgent);
             request.AddHeader("Content-Type", "application/json");
             request.AddHeader("Ubi-RequestedPlatformType", "uplay");
@@ -169,6 +169,26 @@ namespace UbiServices.Public
             var request = new RestRequest();
 
             request.AddHeader("Authorization", $"rm_v1 t={rememberTicket}");
+            request.AddHeader("User-Agent", UserAgent);
+            request.AddHeader("Content-Type", "application/json");
+            request.AddHeader("Ubi-RequestedPlatformType", "uplay");
+            request.AddHeader("Ubi-AppId", AppID);
+            request.AddHeader("Ubi-RememberDeviceTicket", rememberDeviceTicket);
+            RemMe rem = new()
+            {
+                RememberMe = true
+            };
+            request.AddJsonBody(rem);
+
+            return Rest.Post<LoginJson>(client, request);
+        }
+
+        public static LoginJson? LoginRememberDeviceB64(string b64, string rememberDeviceTicket)
+        {
+            var client = new RestClient(URL_Session);
+            var request = new RestRequest();
+
+            request.AddHeader("Authorization", $"Basic {b64}");
             request.AddHeader("User-Agent", UserAgent);
             request.AddHeader("Content-Type", "application/json");
             request.AddHeader("Ubi-RequestedPlatformType", "uplay");
