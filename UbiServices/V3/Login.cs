@@ -1,4 +1,5 @@
-﻿using RestSharp;
+﻿using Newtonsoft.Json;
+using RestSharp;
 using System.Text;
 using UbiServices.Records;
 
@@ -43,7 +44,7 @@ namespace UbiServices.Public
             {
                 RememberMe = true
             };
-            request.AddJsonBody(rem);
+            request.AddBody(JsonConvert.SerializeObject(rem), ContentType.Json);
 
             return Rest.Post<LoginJson>(client, request);
         }
@@ -68,8 +69,8 @@ namespace UbiServices.Public
             RemMe rem = new()
             {
                 RememberMe = true
-            };
-            request.AddJsonBody(rem);
+            }; 
+            request.AddBody(JsonConvert.SerializeObject(rem), ContentType.Json);
 
             return Rest.Post<LoginJson>(client, request);
         }
@@ -102,7 +103,7 @@ namespace UbiServices.Public
                     Id = trustedId
                 }
             };
-            request.AddJsonBody(rem);
+            request.AddBody(JsonConvert.SerializeObject(rem),ContentType.Json);
 
             return Rest.Post<LoginJson>(client, request);
         }
@@ -126,7 +127,7 @@ namespace UbiServices.Public
             {
                 RememberMe = true
             };
-            request.AddJsonBody(rem);
+            request.AddBody(JsonConvert.SerializeObject(rem), ContentType.Json);
 
             return Rest.Post<LoginJson>(client, request);
         }
@@ -152,7 +153,7 @@ namespace UbiServices.Public
             {
                 RememberMe = true
             };
-            request.AddJsonBody(rem);
+            request.AddBody(JsonConvert.SerializeObject(rem), ContentType.Json);
 
             return Rest.Post<LoginJson>(client, request);
         }
@@ -178,12 +179,12 @@ namespace UbiServices.Public
             {
                 RememberMe = true
             };
-            request.AddJsonBody(rem);
+            request.AddJsonBody(rem); request.AddBody(JsonConvert.SerializeObject(rem), ContentType.Json);
 
             return Rest.Post<LoginJson>(client, request);
         }
 
-        public static LoginJson? LoginRememberDeviceB64(string b64, string rememberDeviceTicket)
+        public static LoginJson? LoginB64Device(string b64, string rememberDeviceTicket)
         {
             var client = new RestClient(URL_Session);
             var request = new RestRequest();
@@ -198,7 +199,7 @@ namespace UbiServices.Public
             {
                 RememberMe = true
             };
-            request.AddJsonBody(rem);
+            request.AddBody(JsonConvert.SerializeObject(rem), ContentType.Json);
 
             return Rest.Post<LoginJson>(client, request);
         }
