@@ -21,9 +21,9 @@ namespace UbiServices.Public
                 if (!Validations.IdValidation(sessionId))
                     return null;
 
-                string URL = $"{URL_V1Spaces}/global/ubiconnect/games/api/catalog";
+                string URL = $"{URL_V1Spaces}global/ubiconnect/games/api/catalog";
 
-                URL += "&defaultOnly=" + defaultOnly.ToString().ToLower();
+                URL += "?defaultOnly=" + defaultOnly.ToString().ToLower();
                 URL += "&offset=" + offset.ToString().ToLower();
                 URL += "&limit=" + limit.ToString().ToLower();
 
