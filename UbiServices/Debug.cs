@@ -5,18 +5,18 @@
         public static bool isDebug = false;
         public static void PWDebug(object obj)
         {
-            if (isDebug == true)
+            if (isDebug == true && obj != null)
             {
                 Console.WriteLine(obj.ToString());
-                WriteDebug(obj.ToString());
+                WriteDebug(obj.ToString()!);
             }
         }
         public static void PWDebug(object obj, string logname)
         {
-            if (isDebug == true)
+            if (isDebug == true && obj != null)
             {
                 Console.WriteLine(obj.ToString());
-                WriteDebug(obj.ToString(), logname);
+                WriteDebug(obj.ToString()!, logname);
             }
         }
         public static void PrintDebug(object obj)

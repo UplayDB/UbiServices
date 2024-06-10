@@ -50,5 +50,17 @@ namespace UbiServices.Store
 
             return Rest.Post(client, request);
         }
+
+        public static JObject? GetStoreAlgolia(Enums.LocaleCode locale)
+        {
+            string URL = $"https://avcvysejs1-dsn.algolia.net/1/indexes/products_{locale.ToString()}_default?&query=&hitsPerPage=10000";
+            var client = new RestClient(URL);
+            var request = new RestRequest();
+            request = request.AddHeader("Content-Type", "application/json");
+            request = request.AddHeader("X-Algolia-Api-Key", "9258b782262f815cdfee54a00cf69d02");
+            request = request.AddHeader("X-Algolia-Application-Id", "AVCVYSEJS1");
+
+            return Rest.Get(client, request);
+        }
     }
 }

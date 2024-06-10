@@ -21,7 +21,7 @@
 	<AssemblyOriginatorKeyFile>../../Sign.snk</AssemblyOriginatorKeyFile>
 	<PackageReleaseNotes>Check changelog.txt</PackageReleaseNotes>
 	<DebugType>none</DebugType>
-	<Version>23.3.28.0</Version>
+	<Version>24.6.10.1</Version>
   </PropertyGroup>
 
 
@@ -44,7 +44,7 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="RestSharp" Version="109.0.1" />
+    <PackageReference Include="RestSharp" Version="111.2.0" />
   </ItemGroup>
 
 </Project>

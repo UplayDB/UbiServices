@@ -58,5 +58,16 @@ namespace UbiServices.Store
 
             return Rest.Get(client, request);
         }
+
+
+
+        public static JObject? GetUbisoftPlus()
+        {
+            string URL = $"https://public-ubiservices.ubi.com/v1/applications/global/webservices/ubisoftplus/vault/products?storefront=ie";
+            var client = new RestClient(URL);
+            var request = new RestRequest();
+
+            return Rest.Get(client, request);
+        }
     }
 }
