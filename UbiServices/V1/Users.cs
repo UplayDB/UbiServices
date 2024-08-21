@@ -5,7 +5,7 @@ namespace UbiServices.Public
 {
     public partial class V1
     {
-        public static readonly string URL_UsersMe = Urls.GetUrl("v2/users/me");
+        public static readonly string URL_UsersMe = Urls.GetUrl("v1/users/me");
         /// <summary>
         /// Get User stuff from Ubi
         /// </summary>

@@ -1,4 +1,11 @@
-  24.6.10		2024 Jun 10 - 
+  24.8.21		2024 Aug 21 - 
+--------------------------------------------------------------
+* No more NET 7, using NET 8 now.
+* Adding account connection for steam. (Only steam currently)
+* Fixing V1 Users Me link using v2 api instead of v1
+
+
+  24.6.10		2024 Jun 10 - Aug 21
 --------------------------------------------------------------
 * Added much shit
 

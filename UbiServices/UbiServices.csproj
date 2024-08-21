@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+	<TargetFrameworks>net6.0;net8.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <SignAssembly>True</SignAssembly>
@@ -21,7 +21,7 @@
 	<AssemblyOriginatorKeyFile>../../Sign.snk</AssemblyOriginatorKeyFile>
 	<PackageReleaseNotes>Check changelog.txt</PackageReleaseNotes>
 	<DebugType>none</DebugType>
-	<Version>24.6.10.1</Version>
+	<Version>24.8.21.0</Version>
   </PropertyGroup>
 
 
