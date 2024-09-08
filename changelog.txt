@@ -1,4 +1,9 @@
-  24.8.21		2024 Aug 21 - 
+  24.09.08		2024 Sept 8 - 
+--------------------------------------------------------------
+Update RestSharp
+  
+
+  24.8.21		2024 Aug 21 - 2024 Sept 8
 --------------------------------------------------------------
 * No more NET 7, using NET 8 now.
 * Adding account connection for steam. (Only steam currently)

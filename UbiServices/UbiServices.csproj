@@ -8,7 +8,7 @@
     <Company>UplayDB</Company>
     <Authors>UplayDB,SlejmUr</Authors>
     <Description>C# Lib to Communicate Uplay API</Description>
-    <Copyright>Copyright © UplayDB Team 2022</Copyright>
+    <Copyright>Copyright © UplayDB Team</Copyright>
     <PackageProjectUrl>https://github.com/UplayDB/UbiServices</PackageProjectUrl>
     <RepositoryUrl>https://github.com/UplayDB/UbiServices</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -21,7 +21,7 @@
 	<AssemblyOriginatorKeyFile>../../Sign.snk</AssemblyOriginatorKeyFile>
 	<PackageReleaseNotes>Check changelog.txt</PackageReleaseNotes>
 	<DebugType>none</DebugType>
-	<Version>24.8.21.0</Version>
+	<Version>24.09.08.0</Version>
   </PropertyGroup>
 
 
@@ -44,7 +44,7 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="RestSharp" Version="111.2.0" />
+    <PackageReference Include="RestSharp" Version="112.0.0" />
   </ItemGroup>
 
 </Project>
