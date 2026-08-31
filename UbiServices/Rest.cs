@@ -5,8 +5,10 @@ using System.Net;
 
 namespace UbiServices
 {
-    internal class Rest
+    public class Rest
     {
+        public static string? LastError { get; private set; }
+
         #region JObject
         public static JObject? Put(RestClient client, RestRequest request)
         {
@@ -25,6 +27,7 @@ namespace UbiServices
             catch (Exception ex)
             {
                 Console.WriteLine("Error");
+                LastError = ex.InnerException?.Message ?? ex.Message;
                 InternalEx.WriteEx(ex);
                 return null;
             }
@@ -47,6 +50,7 @@ namespace UbiServices
             catch (Exception ex)
             {
                 Console.WriteLine("Error");
+                LastError = ex.InnerException?.Message ?? ex.Message;
                 InternalEx.WriteEx(ex);
                 return null;
             }
@@ -69,6 +73,7 @@ namespace UbiServices
             catch (Exception ex)
             {
                 Console.WriteLine("Error");
+                LastError = ex.InnerException?.Message ?? ex.Message;
                 InternalEx.WriteEx(ex);
                 return null;
             }
@@ -92,6 +97,7 @@ namespace UbiServices
             catch (Exception ex)
             {
                 Console.WriteLine("Error");
+                LastError = ex.InnerException?.Message ?? ex.Message;
                 InternalEx.WriteEx(ex);
                 return null;
             }
@@ -114,6 +120,7 @@ namespace UbiServices
             catch (Exception ex)
             {
                 Console.WriteLine("Error");
+                LastError = ex.InnerException?.Message ?? ex.Message;
                 InternalEx.WriteEx(ex);
                 return null;
             }
@@ -136,6 +143,7 @@ namespace UbiServices
             catch (Exception ex)
             {
                 Console.WriteLine("Error");
+                LastError = ex.InnerException?.Message ?? ex.Message;
                 InternalEx.WriteEx(ex);
                 return null;
             }
@@ -152,6 +160,7 @@ namespace UbiServices
             catch (Exception ex)
             {
                 Console.WriteLine("Error");
+                LastError = ex.InnerException?.Message ?? ex.Message;
                 InternalEx.WriteEx(ex);
                 return null;
             }
